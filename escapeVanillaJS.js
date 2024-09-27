@@ -21,15 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", async () => {
-        fetch('directions.json') 
-            .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
-                    });
-            });
+        try {
+            const response = await fetch('directions.json') 
+            const directions = await response.json()
+            const message = await navigateLabyrinth(directions)
+            document.getElementById("room3Result").innerHTML = message;
+        } catch (error) {
+            document.getElementById("room3Result").innerHTML = `An error occurred while solving Room 3`;
+        }
     });
 });
 
