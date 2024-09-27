@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 🪲 Bug: Incorrect ID used for attaching the event listener
+    // 🪲 Bug: Incorrect ID used for attaching the event listener ✔️
     document.getElementById("solveRoom1").addEventListener("click", () => {
         console.log(`clicked`)
         fetch('books.json') 
             .then(response => response.json())
             .then(books => {
-                const mostRecentBook = findMostRecentBook(books);
-                // 🪲 Bug: Incorrect element ID
+                const mostRecentBook = findMostRecentBook(books); //⚠️
+                // 🪲 Bug: Incorrect element ID ✔️
                 document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
         // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
