@@ -1,33 +1,40 @@
+const solveRoom1Btn = document.getElementById("solveRoom1")
+const room1Result = document.getElementById("room1Result")
+const solveRoom2Btn = document.getElementById("solveRoom2")
+const room2Result = document.getElementById("room2Result")
+const solveRoom3Btn = document.getElementById("solveRoom3")
+const room3Result = document.getElementById("room3Result")
+
 document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Incorrect ID used for attaching the event listener ✔️
-    document.getElementById("solveRoom1").addEventListener("click", () => {
+    solveRoom1Btn.addEventListener("click", () => {
         fetch('books.json') 
             .then(response => response.json())
             .then(books => {
                 const mostRecentBook = findMostRecentBook(books);
                 // 🪲 Bug: Incorrect element ID ✔️
-                document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
+                room1Result.textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
 
-    document.getElementById("solveRoom2").addEventListener("click", () => {
+    solveRoom2Btn.addEventListener("click", () => {
         const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
         // 🪲 Bug: What's mssing from JS concepts? ✔️
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call ✔️
         const commonConcepts = findIntersection(jsConcepts, reactConcepts);
-        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+        room2Result.textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
     // 🪲 Bug: Asynchronous function ? ✔️
-    document.getElementById("solveRoom3").addEventListener("click", async () => {
+    solveRoom3Btn.addEventListener("click", async () => {
         try {
             const response = await fetch('directions.json') 
             const directions = await response.json()
             const message = await navigateLabyrinth(directions)
-            document.getElementById("room3Result").innerHTML = message;
+            room3Result.innerHTML = message;
         } catch (error) {
-            document.getElementById("room3Result").innerHTML = `An error occurred while solving Room 3`;
+            room3Result.innerHTML = `An error occurred while solving Room 3`;
         }
     });
 });
