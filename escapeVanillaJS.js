@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Incorrect ID used for attaching the event listener ✔️
     document.getElementById("solveRoom1").addEventListener("click", () => {
-        console.log(`clicked`)
         fetch('books.json') 
             .then(response => response.json())
             .then(books => {
